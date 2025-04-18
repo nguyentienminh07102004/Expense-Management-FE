@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -28,7 +29,7 @@ export default function RootLayout({
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
-				{children}
+				<AppRouterCacheProvider>{children}</AppRouterCacheProvider>
 			</body>
 		</html>
 	);

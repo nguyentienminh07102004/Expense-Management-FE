@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { client } from "@/common/Configuration/WebSocket";
 import SendIcon from "@mui/icons-material/Send";
-import { Input } from "@mui/material";
+import { TextareaAutosize } from "@mui/material";
 import { jwtDecode } from "jwt-decode";
 import React from "react";
 
@@ -31,7 +32,7 @@ export default function SendMessageComponent({ token }: { token: string }) {
 			client.subscribe(
 				`/user/${sub}/queue/receive-message`,
 				(message) => {
-					console.log(JSON.parse(message.body).message);
+					alert(JSON.parse(message.body).message);
 				}
 			);
 		};
@@ -40,11 +41,10 @@ export default function SendMessageComponent({ token }: { token: string }) {
 	return (
 		<>
 			<div className="flex justify-center items-center fixed bottom-10 right-10 gap-3">
-				<Input
+				<TextareaAutosize
 					placeholder="Enter your message..."
 					color="primary"
-					fullWidth
-					className="text-white"
+					className="text-white w-72 bg-black"
 					onChange={(evt) => setMessage(evt.target.value)}
 					value={message}
 					onKeyDown={(evt) => {
